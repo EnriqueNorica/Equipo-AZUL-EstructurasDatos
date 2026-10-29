@@ -1,0 +1,111 @@
+namespace EstructurasDatos
+{
+    // Nodo clásico para el Árbol Binario de Búsqueda
+    public class NodoBST<T> where T : IComparable<T>
+    {
+        public T Valor;
+        public NodoBST<T>? Izquierdo;
+        public NodoBST<T>? Derecho;
+
+        public NodoBST(T valor)
+        {
+            Valor = valor;
+            Izquierdo = null;
+            Derecho = null;
+        }
+    }
+
+    public class ArbolConPrioridad<T> where T : IComparable<T>
+    {
+        private NodoBST<T>? raiz;
+        
+        // 1. HashSet para garantizar que no existan valores duplicados en el árbol
+        private readonly HashSet<T> elementosUnicos = new HashSet<T>();
+
+        /// <summary>
+        /// Inserta elementos desde una PriorityQueue asegurando unicidad con el HashSet
+        /// y ordenamiento BST.
+        /// </summary>
+        public void ConstruirDesdeColaPrioridad(PriorityQueue<T, int> colaPrioridad)
+        {
+            while (colaPrioridad.Count > 0)
+            {
+                // Extraemos el elemento con mayor/menor prioridad según la cola
+                T valor = colaPrioridad.Dequeue();
+
+                // Verificamos con el HashSet si ya fue agregado
+                if (elementosUnicos.Add(valor))
+                {
+                    raiz = InsertarEnBST(raiz, valor);
+                    Console.WriteLine($"Elemento {valor} insertado en el BST.");
+                }
+                else
+                {
+                    Console.WriteLine($"Elemento duplicado omitido: {valor}");
+                }
+            }
+        }
+
+        // Lógica tradicional de inserción en un BST
+        private NodoBST<T> InsertarEnBST(NodoBST<T>? actual, T valor)
+        {
+            if (actual == null)
+            {
+                return new NodoBST<T>(valor);
+            }
+
+            int comparacion = valor.CompareTo(actual.Valor);
+            if (comparacion < 0)
+            {
+                actual.Izquierdo = InsertarEnBST(actual.Izquierdo, valor);
+            }
+            else if (comparacion > 0)
+            {
+                actual.Derecho = InsertarEnBST(actual.Derecho, valor);
+            }
+
+            return actual;
+        }
+
+        // Recorrido In-Order para visualizar el BST ordenado
+        public void ImprimirInOrden()
+        {
+            Console.Write("BST In-Orden (Izquierda, Raíz, Derecha): ");
+            InOrdenRecursivo(raiz);
+            Console.WriteLine("null");
+        }
+
+        private void InOrdenRecursivo(NodoBST<T>? nodo)
+        {
+            if (nodo != null)
+            {
+                InOrdenRecursivo(nodo.Izquierdo);
+                Console.Write(nodo.Valor + " <-> ");
+                InOrdenRecursivo(nodo.Derecho);
+            }
+        }
+    }
+
+    class ProgramPruebaArbol
+    {
+        static void MainPrueba(string[] args)
+        {
+            // 2. Creamos la PriorityQueue (Elemento, Prioridad donde menor número = mayor prioridad)
+            PriorityQueue<int, int> colaPrioridad = new PriorityQueue<int, int>();
+
+            colaPrioridad.Enqueue(50, 1);
+            colaPrioridad.Enqueue(20, 2);
+            colaPrioridad.Enqueue(70, 3);
+            colaPrioridad.Enqueue(20, 4); // Duplicado intencional para probar el HashSet
+            colaPrioridad.Enqueue(30, 5);
+
+            ArbolConPrioridad<int> arbol = new ArbolConPrioridad<int>();
+            
+            // Construimos el árbol pasando la cola de prioridad
+            arbol.ConstruirDesdeColaPrioridad(colaPrioridad);
+
+            // Imprimimos el resultado final ordenado por el BST
+            arbol.ImprimirInOrden();
+        }
+    }
+}
