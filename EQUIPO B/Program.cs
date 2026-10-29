@@ -2,52 +2,74 @@
 
 namespace EstructurasDatos
 {
-    public class NodoDoble
+    // Nodo que representa a cada estudiante que porta la tarea en Pasillo 14
+    public class EstudianteNodo
     {
-        public int Valor;
-        public NodoDoble? Siguiente; // Con el ? agregado
-        public NodoDoble? Anterior;  // Con el ? agregado
+        public string Nombre;
+        public string Rol;
+        public EstudianteNodo? Siguiente; // Enlace simple al siguiente compañero
 
-        public NodoDoble(int valor)
+        public EstudianteNodo(string nombre, string rol)
         {
-            Valor = valor;
+            Nombre = nombre;
+            Rol = rol;
             Siguiente = null;
-            Anterior = null;
         }
     }
 
-    public class ListaDoblementeEnlazada
+    // Lista enlazada simple para gestionar la cadena de relevos de la tarea
+    public class CadenaRelevosPasillo14
     {
-        private NodoDoble? cabeza;
-        private NodoDoble? cola;
+        private EstudianteNodo? cabeza;
 
-        public void Agregar(int valor)
+        // Agregar un estudiante al final de la cadena del pasillo
+        public void AgregarEstudiante(string nombre, string rol)
         {
-            NodoDoble nuevoNodo = new NodoDoble(valor);
+            EstudianteNodo nuevoEstudiante = new EstudianteNodo(nombre, rol);
+            
             if (cabeza == null)
             {
-                cabeza = nuevoNodo;
-                cola = nuevoNodo;
+                cabeza = nuevoEstudiante;
             }
             else
             {
-                cola!.Siguiente = nuevoNodo;
-                nuevoNodo.Anterior = cola;
-                cola = nuevoNodo;
+                EstudianteNodo actual = cabeza;
+                while (actual.Siguiente != null)
+                {
+                    actual = actual.Siguiente;
+                }
+                actual.Siguiente = nuevoEstudiante;
             }
-            Console.WriteLine($"Elemento {valor} agregado correctamente.");
+            Console.WriteLine($"[Registro] {nombre} ({rol}) se ha unido a la fila del pasillo.");
         }
 
-        public void ImprimirAdelante()
+        // Simula la mecánica de relevos: pasar la tarea al siguiente estudiante
+        public void SimularRelevosTarea()
         {
-            NodoDoble? actual = cabeza;
-            Console.Write("Lista hacia adelante: ");
+            if (cabeza == null)
+            {
+                Console.WriteLine("No hay estudiantes en el pasillo.");
+                return;
+            }
+
+            Console.WriteLine("\n--- INICIANDO MECÁNICA DE RELEVOS (PASAR LA TAREA) ---");
+            EstudianteNodo? actual = cabeza;
+            int paso = 1;
+
             while (actual != null)
             {
-                Console.Write(actual.Valor + " <-> ");
+                Console.WriteLine($"Paso {paso}: La tarea la tiene actualmente {actual.Nombre} ({actual.Rol}).");
+                if (actual.Siguiente != null)
+                {
+                    Console.WriteLine($" -> Pasando la tarea exitosamente a {actual.Siguiente.Nombre}...\n");
+                }
+                else
+                {
+                    Console.WriteLine($" -> ¡{actual.Nombre} ha llegado a la puerta del aula y entregado el Proyecto Final a tiempo! ¡Meta cumplida! 🎉\n");
+                }
                 actual = actual.Siguiente;
+                paso++;
             }
-            Console.WriteLine("null");
         }
     }
 
@@ -55,13 +77,18 @@ namespace EstructurasDatos
     {
         static void Main(string[] args)
         {
-            // Prueba rápida de la lista
-            ListaDoblementeEnlazada lista = new ListaDoblementeEnlazada();
-            lista.Agregar(10);
-            lista.Agregar(20);
-            lista.Agregar(30);
+            Console.WriteLine("=== PROYECTO: PASILLO 14 - LISTA ENLAZADA SIMPLE ===");
             
-            lista.ImprimirAdelante();
+            CadenaRelevosPasillo14 pasillo = new CadenaRelevosPasillo14();
+
+            // Agregando a los personajes oficiales de la presentación (Página 7 y 13)
+            pasillo.AgregarEstudiante("Bernie Hopper", "Conejo Estudiante");
+            pasillo.AgregarEstudiante("Khaterine Fieldgar", "Gata Estudiante");
+            pasillo.AgregarEstudiante("Ratchet Dunkold", "Ratón Estudiante");
+            pasillo.AgregarEstudiante("Flaky Peaceday", "Pingüina Estudiante");
+
+            // Ejecutar la simulación de la lista enlazada simple
+            pasillo.SimularRelevosTarea();
         }
     }
 }
