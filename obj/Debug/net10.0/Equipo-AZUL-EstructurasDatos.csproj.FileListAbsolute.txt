@@ -1,0 +1,14 @@
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\obj\Debug\net10.0\Equipo-AZUL-EstructurasDatos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\obj\Debug\net10.0\Equipo-AZUL-EstructurasDatos.AssemblyInfoInputs.cache
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\obj\Debug\net10.0\Equipo-AZUL-EstructurasDatos.AssemblyInfo.cs
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\obj\Debug\net10.0\Equipo-AZUL-EstructurasDatos.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\bin\Debug\net10.0\Equipo-AZUL-EstructurasDatos.exe
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\bin\Debug\net10.0\Equipo-AZUL-EstructurasDatos.deps.json
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\bin\Debug\net10.0\Equipo-AZUL-EstructurasDatos.runtimeconfig.json
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\bin\Debug\net10.0\Equipo-AZUL-EstructurasDatos.dll
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\bin\Debug\net10.0\Equipo-AZUL-EstructurasDatos.pdb
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\obj\Debug\net10.0\Equipo-AZUL-EstructurasDatos.dll
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\obj\Debug\net10.0\refint\Equipo-AZUL-EstructurasDatos.dll
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\obj\Debug\net10.0\Equipo-AZUL-EstructurasDatos.pdb
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\obj\Debug\net10.0\Equipo-AZUL-EstructurasDatos.genruntimeconfig.cache
+C:\Users\USER\Desktop\Equipo-AZUL-EstructurasDatos\obj\Debug\net10.0\ref\Equipo-AZUL-EstructurasDatos.dll
